@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Paragraph Graph Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../css/text.css">
+</head>
+<body>
+    <a href="welcome.html" class="back-button">← Back</a>
+    
+    <h1>Smart Paragraph Graph Generator</h1>
+    <p class="description">Paste any paragraph containing data and get instant visualizations</p>
+    
+    <textarea id="textData" placeholder="Example: Our survey showed 30% prefer apples, 50% chose bananas, and 20% selected oranges. Monthly sales were January: 12000, February: 15000, March: 18000. Customer satisfaction scores are 4.2, 4.5, and 4.8 for Q1, Q2, and Q3 respectively. Test scores ranged from 65 to 95 with most students scoring between 75-85."></textarea>
+    
+    <div class="note">Note: Please enter numbers without commas (e.g., 7200 instead of 7,200) for accurate parsing.</div>
+    
+    <div class="controls">
+        <select id="chartType">
+            <option value="auto">Auto-select (Recommended)</option>
+            <option value="bar">Bar Chart</option>
+            <option value="pie">Pie Chart</option>
+            <option value="line">Line Chart</option>
+            <option value="doughnut">Doughnut Chart</option>
+            <option value="radar">Radar Chart</option>
+            <option value="scatter">Scatter Plot</option>
+            <option value="histogram">Histogram</option>
+        </select>
+        <button id="generateBtn">Generate Graph</button>
+    </div>
+    
+    <div class="analysis" id="analysis"></div>
+    
+    <div class="chart-container">
+        <canvas id="dataChart"></canvas>
+    </div>
+    
+    <div id="tableContainer"></div>
+
+    <script src="js/text.js"></script>
+</body>
+</html>

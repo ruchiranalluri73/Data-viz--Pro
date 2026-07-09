@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Data Graph Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <link rel="stylesheet" href="css/csv.css">
+</head>
+<body>
+    <div class="button-container">
+        <button class="back-button" id="backButton">← Back to Main Page</button>
+    </div>
+    <h1>CSV Data Graph Generator</h1>
+    <p>Upload a CSV file to visualize your data as interactive charts</p>
+   
+    <div class="upload-box">
+        <p>Drag & drop your CSV file here or click to browse</p>
+        <input type="file" id="csvFile" accept=".csv">
+        <div class="file-info" id="fileInfo"></div>
+    </div>
+   
+    <div class="controls" id="controls">
+        <div class="control-group">
+            <label for="categoryColumn">Category (X-axis):</label>
+            <select id="categoryColumn"></select>
+        </div>
+        <div class="control-group">
+            <label for="valueColumn">Value (Y-axis):</label>
+            <select id="valueColumn"></select>
+        </div>
+        <div class="control-group">
+            <label for="chartType">Chart Type:</label>
+            <select id="chartType">
+                <option value="bar">Bar Chart (best for categories)</option>
+                <option value="line">Line Chart</option>
+                <option value="pie" selected>Pie Chart</option>
+                <option value="doughnut">Doughnut Chart</option>
+                <option value="scatter">Scatter Plot</option>
+                <option value="bubble">Bubble Chart</option>
+                <option value="radar">Radar Chart</option>
+                <option value="histogram">Histogram</option>
+            </select>
+        </div>
+       
+        <div class="ai-recommendation" id="aiRecommendation" style="display: none;">
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                </svg>
+                Recommended by AI
+            </h4>
+            <p id="recommendationText">Based on your data, we recommend using a <strong>Pie Chart</strong> to best visualize the relationship between these columns.</p>
+            <button class="use-recommendation" id="useRecommendationBtn">Use This Recommendation</button>
+        </div>
+       
+        <button id="generateBtn">Generate Graph</button>
+    </div>
+   
+    <div class="chart-container">
+        <canvas id="dataChart"></canvas>
+    </div>
+   
+    <div class="chart-actions" id="chartActions" style="display: none;">
+        <button class="download-btn" id="downloadBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+            </svg>
+            Download Chart
+        </button>
+    </div>
+
+    <div class="data-preview">
+        <h3>Data Preview</h3>
+        <div id="tableContainer"></div>
+    </div>
+   
+    <div class="data-summary" id="dataSummary" style="display: none;">
+        <h3>Data Summary</h3>
+        <div id="summaryContent"></div>
+    </div>
+   
+    <div class="toast" id="toast"></div>
+
+    <script src="js/csv.js"></script>
+</body>
+</html>
